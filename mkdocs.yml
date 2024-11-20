@@ -23,7 +23,10 @@ theme:
         name: Switch to light mode
 site_name: How Systems Work?
 plugins:
-  - blog
+  - blog:
+      blog_dir: "."
+      post_dir: blog
+      blog_toc: true
 
 markdown_extensions:
   - pymdownx.highlight:
