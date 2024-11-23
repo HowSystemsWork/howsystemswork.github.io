@@ -157,8 +157,7 @@ do the following:
 * Take a fixed length bit array of length 10.
 * Set all entries to 0 to begin with.
 * Use N different hash functions to compute the hash of each string. For illustration, we'll use 3 (realistically
-  speaking
-  you would use more)
+  speaking you would use more)
 * Set the bit at the respective indices of the array.
 
 For the word `cat`, this would look like this:

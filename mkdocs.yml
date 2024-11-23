@@ -1,7 +1,10 @@
 theme:
+  font:
+    text: Oxygen  # Disable default font to use custom
   logo: how-systems-work-logo.svg
   favicon: how-systems-work-logo.svg
   name: material
+  custom_dir: docs/overrides
   features:
     - navigation.instant
     - navigation.sections
@@ -12,6 +15,8 @@ theme:
     - toc.follow
   palette:
     # light mode
+    - primary: white
+    - accent: black
     - scheme: default
       toggle:
         icon: material/brightness-7
@@ -21,7 +26,7 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-site_name: How Systems Work?
+site_name: HowSystemsWork?
 plugins:
   - blog:
       blog_dir: "."
@@ -29,6 +34,7 @@ plugins:
       blog_toc: true
 
 markdown_extensions:
+  - md_in_html
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -48,3 +54,5 @@ extra_css:
 extra_javascript:
   - mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+copyright: Copyright &copy; 2024 <a href="https://www.howsystemswork.com">HowSystemsWork?</a>
