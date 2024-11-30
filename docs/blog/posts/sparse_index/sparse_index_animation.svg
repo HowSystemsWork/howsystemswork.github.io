@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <style>
+    .record { font-family: monospace; }
+    .pointer { stroke-width: 2; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideIn {
+      from { transform: translateX(-50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  </style>
+
+  <!-- Database Records -->
+  <g transform="translate(50, 50)">
+    <text x="0" y="-20" fill="#333" font-weight="bold">Database Records (Block 1: First 20 records)</text>
+    
+    <!-- Record 1 -->
+    <rect x="0" y="0" width="280" height="40" fill="#e6e6e6" rx="5"/>
+    <text x="10" y="25" class="record">
+      <tspan>ID: 1 | Name: John | DOB: NULL</tspan>
+    </text>
+    
+    <!-- Record 2 -->
+    <rect x="0" y="50" width="280" height="40" fill="#e6e6e6" rx="5"/>
+    <text x="10" y="75" class="record">
+      <tspan>ID: 2 | Name: Alice | DOB: 2000-05-15</tspan>
+    </text>
+    
+    <!-- Record 3 -->
+    <rect x="0" y="100" width="280" height="40" fill="#e6e6e6" rx="5"/>
+    <text x="10" y="125" class="record">
+      <tspan>ID: 3 | Name: Bob | DOB: NULL</tspan>
+    </text>
+    
+    <!-- Record 4 -->
+    <rect x="0" y="150" width="280" height="40" fill="#e6e6e6" rx="5"/>
+    <text x="10" y="175" class="record">
+      <tspan>ID: 4 | Name: Carol | DOB: 2001-03-20</tspan>
+    </text>
+
+    <!-- Record 5 -->
+    <rect x="0" y="200" width="280" height="40" fill="#e6e6e6" rx="5"/>
+    <text x="10" y="225" class="record">
+      <tspan>ID: 5 | Name: Dave | DOB: 1999-11-30</tspan>
+    </text>
+
+    <!-- More Records Indicator -->
+    <rect x="0" y="250" width="280" height="40" fill="#f0f0f0" rx="5" stroke-dasharray="5,5"/>
+    <text x="140" y="275" class="record" text-anchor="middle">
+      <tspan>... More records in blocks 2-50 ...</tspan>
+    </text>
+  </g>
+
+  <!-- Sparse Index (DOB-based) -->
+  <g transform="translate(500, 50)">
+    <text x="0" y="-20" fill="#333" font-weight="bold">Sparse Index (DOB >= 2000)</text>
+    
+    <!-- Index Entry 1 -->
+    <rect x="0" y="50" width="250" height="40" fill="#b3e6cc" rx="5">
+      <animate attributeName="opacity" from="0" to="1" dur="1s" begin="0s" fill="freeze" repeatCount="indefinite"/>
+    </rect>
+    <text x="10" y="75" class="record">
+      <tspan>DOB: 2000-05-15 → ID: 2</tspan>
+    </text>
+    
+    <!-- Index Entry 2 -->
+    <rect x="0" y="150" width="250" height="40" fill="#b3e6cc" rx="5">
+      <animate attributeName="opacity" from="0" to="1" dur="1s" begin="0.5s" fill="freeze" repeatCount="indefinite"/>
+    </rect>
+    <text x="10" y="175" class="record">
+      <tspan>DOB: 2001-03-20 → ID: 4</tspan>
+    </text>
+
+    <!-- More Index Entries Indicator -->
+    <rect x="0" y="250" width="250" height="40" fill="#d9f2e6" rx="5" stroke-dasharray="5,5"/>
+    <text x="125" y="275" class="record" text-anchor="middle">
+      <tspan>... More index entries ...</tspan>
+    </text>
+  </g>
+
+  <!-- Arrows -->
+  <g stroke="#666" fill="none" class="pointer">
+    <!-- Arrow from Record 2 to Index 1 -->
+    <path d="M 330,70 C 380,70 430,70 490,70">
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1s" fill="freeze" repeatCount="indefinite"/>
+    </path>
+    <polygon points="490,70 480,65 480,75" fill="#666">
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1s" fill="freeze" repeatCount="indefinite"/>
+    </polygon>
+    
+    <!-- Arrow from Record 4 to Index 2 -->
+    <path d="M 330,170 C 380,170 430,170 490,170">
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.5s" fill="freeze" repeatCount="indefinite"/>
+    </path>
+    <polygon points="490,170 480,165 480,175" fill="#666">
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.5s" fill="freeze" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(50, 380)">
+    <rect x="0" y="0" width="20" height="20" fill="#e6e6e6"/>
+    <text x="30" y="15">Database Record</text>
+    
+    <rect x="200" y="0" width="20" height="20" fill="#b3e6cc"/>
+    <text x="230" y="15">Sparse Index Entry</text>
+
+    <rect x="400" y="0" width="20" height="20" fill="#f0f0f0" stroke-dasharray="5,5"/>
+    <text x="430" y="15">Continued Records</text>
+  </g>
+</svg>
