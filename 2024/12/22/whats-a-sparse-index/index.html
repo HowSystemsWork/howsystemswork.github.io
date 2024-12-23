@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../../../10/16/how-bloom-filters-work/">
+        <link rel="prev" href="../../../11/01/what-is-cap-theorem/">
       
-      
-        <link rel="next" href="../../../12/22/whats-a-sparse-index/">
       
       
       <link rel="icon" href="../../../../how-systems-work-logo.svg">
@@ -20,7 +18,7 @@
     
     
       
-        <title>What is CAP theorem? - HowSystemsWork?</title>
+        <title>What's a sparse index? - HowSystemsWork?</title>
       
     
     
@@ -74,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cap" class="md-skip">
+        <a href="#introduction" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              What is CAP theorem?
+              What's a sparse index?
             
           </span>
         </div>
@@ -520,37 +518,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cap" class="md-nav__link">
+  <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      CAP
+      Introduction
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="CAP">
+    <nav class="md-nav" aria-label="Introduction">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#consistency" class="md-nav__link">
+  <a href="#two-common-types-of-database-indexes-that-you-should-know" class="md-nav__link">
     <span class="md-ellipsis">
-      Consistency
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#availability" class="md-nav__link">
-    <span class="md-ellipsis">
-      Availability
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#partition-tolerance" class="md-nav__link">
-    <span class="md-ellipsis">
-      Partition Tolerance
+      Two common types of database indexes that you should know
     </span>
   </a>
   
@@ -562,37 +542,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#understanding-cap-theorem" class="md-nav__link">
+  <a href="#sparse-indexes" class="md-nav__link">
     <span class="md-ellipsis">
-      Understanding CAP theorem
+      Sparse indexes
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ap-and-cp" class="md-nav__link">
+  <a href="#why-use-a-sparse-index" class="md-nav__link">
     <span class="md-ellipsis">
-      AP and CP
+      Why use a sparse index?
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AP and CP">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-calculations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Some calculations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Some calculations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#available-and-partition-tolerant-ap" class="md-nav__link">
+  <a href="#space-used-by-a-sparse-index" class="md-nav__link">
     <span class="md-ellipsis">
-      Available and Partition Tolerant - AP
+      Space used by a sparse index
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#consistent-and-partition-tolerant-cp" class="md-nav__link">
+  <a href="#space-used-by-a-dense-index" class="md-nav__link">
     <span class="md-ellipsis">
-      Consistent and Partition Tolerant - CP
+      Space used by a dense index
     </span>
   </a>
   
@@ -600,6 +589,57 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hidden-costs-of-a-sparse-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hidden costs of a sparse index
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hidden costs of a sparse index">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extra-disk-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extra disk reads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#increased-search-times" class="md-nav__link">
+    <span class="md-ellipsis">
+      Increased search times
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summing-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summing up
+    </span>
+  </a>
   
 </li>
       
@@ -640,7 +680,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
-                        <time datetime="2024-11-01 00:00:00" class="md-ellipsis">November 1, 2024</time>
+                        <time datetime="2024-12-22 00:00:00" class="md-ellipsis">December 22, 2024</time>
                       </div>
                     </li>
                     
@@ -651,7 +691,9 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../../category/distributed-systems/">distributed systems</a></span>
+                              <a href="../../../../category/distributed-systems/">distributed systems</a>, 
+                              <a href="../../../../category/databases/">databases</a>, 
+                              <a href="../../../../category/datastructures/">datastructures</a></span>
                         </div>
                       </li>
                     
@@ -662,7 +704,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                           <span class="md-ellipsis">
                             
-                              3 min read
+                              5 min read
                             
                           </span>
                         </div>
@@ -682,77 +724,93 @@
         
 
 
-  <h1>What is CAP theorem?</h1>
+  <h1>What's a sparse index?</h1>
 
-<p>CAP theorem is one of the fundamental principles in distributed systems that's important to understand. In this post,
-let's learn more about the CAP theorem and understand how this theorem is applicable to real world distributed systems.</p>
+<p>Databases can typically store billions or even trillions of records and when it comes to data retrieval,
+it needs to be fast. In this post, we will learn about sparse indexes, which are specialized datastructures
+that help databases with efficient data retrieval.</p>
 <!-- more -->
 
-<h2 id="cap">CAP</h2>
-<p>CAP stands for Consistency, Availability and Partition Tolerance.</p>
-<p>To better understand each of these terms, let's assume that:</p>
-<ul>
-<li>We have a simple system of servers consisting of 3 nodes, <code>node1</code>, <code>node2</code> and <code>node3</code>.</li>
-<li>Each of these nodes are replicas of a database shard <code>replica1</code>, <code>replica2</code> and <code>replica3</code>.</li>
-<li>Each of these replicas contain exactly the same set of data.</li>
-<li>A client can connect to any of these replicas and query data.</li>
-<li>A client can connect to any of these replicas and insert data.</li>
-<li>Data inserted into one replica will be replicated to the other replicas.</li>
-<li>There's a drift if the data in any one of the replicas is different from the others.</li>
-</ul>
-<p>A node, a replica, a host or a server all mean the same for the purposes of this example:</p>
-<p><img alt="database shard" src="../../../../posts/cap_theorem/database_shard.png" /></p>
-<h3 id="consistency">Consistency</h3>
-<p>The property of consistency guarantees that all the nodes return the exact same results regardless of which node the
-clients query.</p>
-<h3 id="availability">Availability</h3>
-<p>The property of availability guarantees that the clients querying are guaranteed a result even if one or
-more nodes in the system fail (even if the results are inconsistent).</p>
-<h3 id="partition-tolerance">Partition Tolerance</h3>
-<p>Partition tolerance refers to the durability of distributed systems. In case of an event like a network partition, the
-distributed system continues to operate without any downtime.</p>
-<h2 id="understanding-cap-theorem">Understanding CAP theorem</h2>
-<p>The CAP theorem generally states the following:</p>
+<h2 id="introduction">Introduction</h2>
 <blockquote>
-<p>In a distributed system, it's impossible to guarantee all the three properties of Consistency(C), Availability(A) and
-Partition tolerance(P) simultaneously.</p>
+<p><strong>Note:</strong> Before you read on, to better understand database indexes thoroughly, I recommend that you read more
+about <a href="https://en.wikipedia.org/wiki/Database_index">database indexes</a> first.</p>
 </blockquote>
-<p><img alt="cap diagram" src="../../../../posts/cap_theorem/cap_diagram.png" /></p>
-<p>Since network partitions are realistic and are unavoidable in real world distributed systems, in case of a network
-partition, we
-should optimize for one of the following:</p>
+<p>Databases organize and store records and write them to disk as datafiles. When it comes to querying the data, we
+couldn't possibly know which file has the records matching a query unless we iterate through each and every datafile
+there is. So, how could we possibly know which datafile contains the records that we want?</p>
+<p>This is the exact problem that database indexes intend to solve. A database index holds a pointer to the actual record
+in a datafile so that it's easy to locate the record.</p>
+<h3 id="two-common-types-of-database-indexes-that-you-should-know">Two common types of database indexes that you should know</h3>
+<p>There are two very common types of database indexes - dense and sparse database indexes. If there's a pointer to every
+record there is in a datafile, then that's known as a dense index. On the other hand, if there is a pointer for a block
+of records, then that's known as a sparse index.</p>
+<p>In this article, we will discuss more about sparse indexes.</p>
+<h2 id="sparse-indexes">Sparse indexes</h2>
+<p>Sparse indexes skip storing a pointer to each and every record that's present in a database and only store pointer to a
+block of records and where that block is present on disk. This is called a sparse index.</p>
+<p>For example, let's consider that a database that contains a student table with 1000 rows and fields <code>id</code>, <code>name</code>
+and <code>dob</code>. To visualize a sparse index, let's assume that the records are physically stored on disk as <code>blocks</code> and
+there are <code>5</code> entries per block. For <code>1000</code> database records, there will be <code>200</code> such blocks.</p>
+<p>Now, if we were to create a sparse index on those <code>1000</code> records, we would get one index entry per block and only <code>200</code>
+index entries altogether.</p>
+<p><img alt="Sparse Index Animated" src="../../../../posts/sparse_index/sparse_index_animation.svg" /></p>
+<p>On the other hand, if the index were to be a dense index, we would store one index entry per record. So, for <code>1000</code>
+records, we would have <code>1000</code> index entries.</p>
+<p><img alt="Dense Index Animated" src="../../../../posts/sparse_index/dense_index_animation.svg" /></p>
+<h2 id="why-use-a-sparse-index">Why use a sparse index?</h2>
+<p>From the above examples, you might have already observed that sparse indexes store <code>5x</code> lesser entries to data than
+dense indexes (<code>200</code> entries vs <code>1000</code> index entries). Now, imagine if there are millions or even billions of records in
+a database. Indexing each record would mean that dense indexes would consume <code>5x</code> more space on disk (ignoring data
+compression and other factors).</p>
+<p>Disk space can quickly become a problem when you've got a lot of records to index. In such scenarios sparse indexes can
+come in handy.</p>
+<h2 id="some-calculations">Some calculations</h2>
+<p>Let's try to do some calculations on the space required to store index entries (pointers to actual data on disk).</p>
+<p>For our example above, we can calculate the total space needed to store and index 1000 records. Let's assume that each
+record in the student table consists of the following:</p>
 <ul>
-<li>AP - The system is highly available(A) during a network partition(P), sacrificing consistency(C).</li>
-<li>CP - The system is highly consistent(C) during a network partition(P), sacrificing availability(A).</li>
+<li><code>id</code> - 4 Bytes</li>
+<li><code>name</code> - 50 Bytes</li>
+<li><code>dob</code> - 8 bytes (assuming timestamp format)</li>
 </ul>
-<h2 id="ap-and-cp">AP and CP</h2>
-<p>In our example above, if a client writes to replica 1, then the data would be replicated automatically to the other two
-replicas.</p>
-<p>Let's imagine that there's a network partition that causes replica 1 to go offline just after the client finishes
-writing the data, but before it can be fully replicated to the other two replicas. In this scenario, there will be a
-data rift or in other words, the data would be inconsistent between the nodes.</p>
-<h3 id="available-and-partition-tolerant-ap">Available and Partition Tolerant - AP</h3>
-<p>If we design a system that's highly available, then we can ensure that replicas 2 and 3 are always up and return a
-result to a query even if the results might stale due the rift. We will hope that when replica 1 comes online, the other
-two replicas will become eventually consistent.</p>
-<h3 id="consistent-and-partition-tolerant-cp">Consistent and Partition Tolerant - CP</h3>
-<p>On the other hand, if we were to design a system that is highly consistent, we need to pick consistency over
-availability. In this scenario, even if the replicas 2 and 3 are online, since the data is not consistent amongst the
-replicas, we won't return any results until both the replicas have caught up with replica 1.</p>
-<p>In realworld distributed systems, there are some systems that optimize for availability and there are others that
-optimize for consistency.
-A few examples that prioritize availability are:</p>
+<p>Total size of each <code>record</code>: <code>4 + 50 + 8 = 62 Bytes</code>.
+For 1000 records: <code>62 Bytes * 1000 = 62,000 Byes ~ 62 KB</code></p>
+<p>Assuming that we index by <code>dob</code> as illustrated in the example, each index entry would contain the following:</p>
 <ul>
-<li>Cassandra</li>
-<li>DynamoDB</li>
+<li><code>dob</code>: <code>4 Bytes</code></li>
+<li>Block ID that references the location of the record on disk: <code>4 Bytes</code></li>
+<li>Record Offset: Position of the record within that block: <code>4 Bytes</code></li>
 </ul>
-<p>On the other hand, some examples of distributed systems that prioritize consistency are:</p>
-<ul>
-<li>ETCD</li>
-<li>HBase</li>
-</ul>
-<p>So, that basically wraps our post on CAP theorem. I hope that this post helped you understand what CAP theorem is and
-how it can be leveraged to design a distributed systems with tradeoffs to either consistency or availability.</p>
+<p>Total space occupied by each index entry: <code>4 + 4 + 4 = 12 Bytes</code></p>
+<h4 id="space-used-by-a-sparse-index">Space used by a sparse index</h4>
+<p>If there's a sparse index entry for every 5 records: <code>1000/5 = 200 index entries</code>. Total space occupied by <code>200</code> index
+entries: <code>200 * 12 Bytes = 2400 Bytes ~ 2.4 KB</code></p>
+<h4 id="space-used-by-a-dense-index">Space used by a dense index</h4>
+<p>Since there's a index entry per record for dense index, for 1000 records, there would be <code>1000</code> index entries. Total
+space occupied by <code>1000</code> index entries: <code>1000 * 12 Bytes = 12,000 Bytes ~ 12 KB</code></p>
+<p>As you might be able to observe already, we are using <code>5x</code> less space to index <code>1000</code> entries using a sparse index as
+compared to a dense index.</p>
+<h2 id="hidden-costs-of-a-sparse-index">Hidden costs of a sparse index</h2>
+<h3 id="extra-disk-reads">Extra disk reads</h3>
+<p>As much space as sparse indexes might be able to save, since the granularity of these indexes don't directly point to
+the exact location of a record on disk, additional disk reads are necessary to further do sequential reads on index
+entries to filter down and locate the matching records. This makes them less efficient than dense indexes as they point
+directly to where a given record is located on the disk which saves disk reads.</p>
+<h3 id="increased-search-times">Increased search times</h3>
+<p>Since we need extra reads to disk, we consequentially spend more time searching for the records with in the block
+essentially increasing search times.</p>
+<h3 id="complexity">Complexity</h3>
+<p>There are certain types of queries where the sparse indexes might not work well. For instance, range queries. For range
+queries, we would need more disk I/O operations to scan records sequentially spanning different blocks leading to
+increased query time and complexity.</p>
+<h2 id="summing-up">Summing up</h2>
+<p>To sum up, sparse indexes offer good flexibility when we need to trade between space and time. If disk space is limited
+or if there are trillions of entries in a database, and we can't afford to maintain an index entry for each and every
+record, then naturally sparse indexes are a great choice. For use cases where the number of records are small or disk
+space is abundant, and when we need to optimize for speed over space, we can use dense indexes.</p>
+<p>I hope that this post was able to give you a high level overview about sparse indexes, their advantages, disadvantages
+and when to use them.</p>
 
 
 
